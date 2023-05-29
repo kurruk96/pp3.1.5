@@ -14,13 +14,13 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/rest")
-public class RESTController {
+@RequestMapping("/admin")
+public class AdminController {
     private final UserService userService;
     private final RoleService roleService;
 
 
-    public RESTController(UserService userService, RoleService roleService) {
+    public AdminController(UserService userService, RoleService roleService) {
         this.userService = userService;
         this.roleService = roleService;
     }

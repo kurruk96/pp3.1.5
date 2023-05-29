@@ -1,5 +1,5 @@
 //получение пользователя
-const currentUser = fetch('/rest/currentUser')
+const currentUser = fetch('/user/currentUser')
 .then(response => response.json());
 //вызов заполнение навбара
 currentUser.then(data => makeNavbarWithCurrentUser(data))

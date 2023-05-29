@@ -1,5 +1,5 @@
 // получение ролей
-const allRoles = fetch('/rest/roles')
+const allRoles = fetch('/admin/roles')
 .then(response => response.json())
 
 //заполнение выбора роли
@@ -12,7 +12,7 @@ allRoles.then(e => {
 })
 
 //получение пользователя
-const currentUser = fetch('/rest/currentUser')
+const currentUser = fetch('/admin/currentUser')
 .then(response => response.json());
 //вызов заполнение навбара
 currentUser.then(data => makeNavbarWithCurrentUser(data))
@@ -31,7 +31,7 @@ const makeNavbarWithCurrentUser = (data) => {
 };
 
 //получение всех юзеров
-const allUsers = fetch('/rest/users')
+const allUsers = fetch('/admin/users')
 .then(response => response.json());
 
 //вызов заполнения таблицы юзеров
@@ -112,7 +112,7 @@ async function createNewUser(event) {
             rolesSelected.push({id: roleHtmlEl.options[i].value, name: 'ROLE_' + roleHtmlEl.options[i].innerHTML})
         }
     }
-    await fetch('/rest/new', {
+    await fetch('/admin/new', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json;charset=utf-8' },
         body: JSON.stringify({
@@ -182,7 +182,7 @@ document.getElementById('editForm').addEventListener('submit', e => {
             rolesEditCell += rolesEd.options[i].innerHTML + ' '
         }
     }
-    fetch('/rest/edit', {
+    fetch('/admin/edit', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json;charset=utf-8' },
         body: JSON.stringify({
@@ -236,7 +236,7 @@ on(document,'click', '#deleteUserButton', e => {
 
 document.getElementById('deleteForm').addEventListener('submit', e => {
     e.preventDefault()
-    fetch('/rest/delete/' + rowDelete.children[0].innerHTML, {
+    fetch('/admin/delete/' + rowDelete.children[0].innerHTML, {
         method: 'DELETE'
     }).then(() => {
         document.getElementById('closeDelete').click();
